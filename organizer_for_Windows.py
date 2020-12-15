@@ -2,13 +2,13 @@ import shutil
 import glob
 import os
 
-# you need to change the paths below to what you want them to be.
+#change the paths below to what you want them to be or even add new if you need more
 document_dir = 'C:/Users/kirak/Desktop/python_stuff/Test_dir_2/documents/'
 audio_dir = 'C:/Users/kirak/Desktop/python_stuff/Test_dir_2/audio/'
 video_dir = 'C:/Users/kirak/Desktop/python_stuff/Test_dir_2/video/'
 picture_dir = 'C:/Users/kirak/Desktop/python_stuff/Test_dir_2/pictures/'
 pythonscripts_dir = 'C:/Users/kirak/Desktop/python_stuff/Test_dir_2/python_scripts/'
-
+#change the extensions or even add new ones depending on what files you want to move
 document_extensions = ['.doc', '.docx', '.log', '.msg', '.odt', '.pages', '.rtf', '.tex', '.txt', '.wpd', '.wps']
 audio_extensions = ['.aif', '.aac', '.iff', '.m3u', '.m4a', '.mid', '.mp3', '.mpa', '.wav', '.wma']
 video_extensions = ['.3g2', '.3gp', '.asf', '.avi', '.flv', '.m4v', '.mov', '.mp4', '.mpg', '.rm', '.srt', '.swf', '.vob', '.wmv']
@@ -17,26 +17,14 @@ pythonscripts_extensions = ['.egg-info', '.epp', '.oog', '.p', '.p4a', '.pickle'
 
 
 check_path='C:/Users/kirak/Desktop/python_stuff/Test_dir/'
-path_file_names_list=[name for name in os.listdir(r'C:\Users\kirak\Desktop\python_stuff\Test_dir')]
-for i in path_file_names_list:
-    for extension in document_extensions:
-        if i.endswith(f'{extension}'):
-            os.replace(check_path+i,document_dir+i)
-            print(f'moved file {i} to {document_dir}')
-    for extension in audio_extensions:
-        if i.endswith(f'{extension}'):
-            os.replace(check_path+i,audio_dir+i)
-            print(f'moved file {i} to {audio_dir}')
-    for extension in video_extensions:
-        if i.endswith(f'{extension}'):
-            os.replace(check_path+i,video_dir+i)
-            print(f'moved file {i} to {video_dir}')
-    for extension in picture_extensions:
-        if i.endswith(f'{extension}'):
-            os.replace(check_path+i,picture_dir+i) 
-            print(f'moved file {i} to {picture_dir}')
-    for extension in pythonscripts_extensions:
-        if i.endswith(f'{extension}'):
-            os.replace(check_path+i,pythonscripts_dir+i)
-            print(f'moved file {i} to {pythonscripts_dir}')
+def organizer(new_dir,extension_set):
+    path_names_list=[name for name in os.listdir(r'C:\Users\kirak\Desktop\python_stuff\Test_dir') if list(filter(name.endswith,extension_set)) != [] ]
+    for i in path_names_list:
+        os.replace(check_path+i,new_dir+i)
+        print(f'moved file {i} to {new_dir}')
 
+organizer(document_dir,document_extensions)
+organizer(audio_dir,audio_extensions)
+organizer(video_dir,video_extensions)
+organizer(picture_dir,picture_extensions)
+organizer(pythonscripts_dir,pythonscripts_extensions)
