@@ -19,9 +19,31 @@ pythonscripts_extensions = ['.egg-info', '.epp', '.oog', '.p', '.p4a', '.pickle'
 check_path='C:/Users/kirak/Desktop/python_stuff/Test_dir/'
 def organizer(new_dir,extension_set):
     path_names_list=[name for name in os.listdir(r'C:\Users\kirak\Desktop\python_stuff\Test_dir') if list(filter(name.endswith,extension_set)) != [] ]
-    for i in path_names_list:
-        os.replace(check_path+i,new_dir+i)
-        print(f'moved file {i} to {new_dir}')
+    destination_path_names_list=[name for name in os.listdir(new_dir) if list(filter(name.endswith,extension_set)) != [] ]
+    for name in path_names_list:
+        if name in destination_path_names_list:
+            i=0
+            new_file_name=name
+            while new_file_name in destination_path_names_list:             #tracks if there's a file with the same name and finds what number indicator to put
+                i=i+1
+                x=""                
+                for j in new_file_name:          #tracks at which spot of the filename the . is so it puts the number indicator before it
+                    if j==".":
+                        x=x+"("+str(i)+")"+j
+                    else:
+                        x=x+j
+                new_file_name=x
+
+            os.replace(check_path+name,new_dir+new_file_name)
+            print(f'moved file {name} to {new_dir}')
+        else:
+            os.replace(check_path+name,new_dir+name)
+            print(f'moved file {name} to {new_dir}')
+
+
+
+
+
 
 organizer(document_dir,document_extensions)
 organizer(audio_dir,audio_extensions)
