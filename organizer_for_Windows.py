@@ -32,7 +32,8 @@ def organizer(new_dir,extension_set):
                         x=x+"("+str(i)+")"+j
                     else:
                         x=x+j
-                new_file_name=x
+                if not(x in destination_path_names_list):
+                    new_file_name=x
 
             os.replace(check_path+name,new_dir+new_file_name)
             print(f'moved file {name} to {new_dir}')
