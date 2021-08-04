@@ -18,7 +18,6 @@ types=[{"name":"document",
 "path":"/home/pi/Python/",
 "extensions":['.egg-info', '.epp', '.oog', '.p', '.p4a', '.pickle', '.pil', '.pth', '.py', '.pyc', '.pyd', '.pyo', '.pyt', '.pyw', '.pyz', '.pyzw', '.rpy', '.ssdf', '.whl', '.yaml']}]
 
->>>>>>> 7c9b3360cb2c56f59308e64afae2872f16fb349f
 for type in types:
     for file in glob.glob(f'/home/pi/Downloads/*{type["extensions"]}'):
         shutil.move(file, type["path"])
